@@ -1,0 +1,6 @@
+OAS BOARD
+M:	Andreas Anderberg <andreas@orbital-systems.com>
+S:	Supported
+F:	board/orbital/oas/
+F:	include/configs/oas.h
+F:	configs/oas_defconfig
