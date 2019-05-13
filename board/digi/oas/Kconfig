@@ -14,6 +14,6 @@ config SYS_SOC
 	default "mx6"
 
 config SYS_CONFIG_NAME
-	default "imx6ul-oas"
+	default "oas"
 
 endif
