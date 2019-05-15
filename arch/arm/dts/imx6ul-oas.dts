@@ -6,11 +6,9 @@
  */
 
 /dts-v1/;
-
+#include <dt-bindings/input/input.h>
 /* i.MX6 UltraLite CPU */
 #include "imx6ul.dtsi"
-/* ConnectCore 6UL (wireless/bluetooth variant) */
-#include "imx6ul-ccimx6ul-wb.dtsi"
 
 / {
     // Add here your platform model.
@@ -47,20 +45,20 @@
     //};
 };
 
-&can1 {
-    pinctrl-names = "default";
-    pinctrl-0 = <&pinctrl_flexcan1>;
+// &can1 {
+//     pinctrl-names = "default";
+//     pinctrl-0 = <&pinctrl_flexcan1>;
 
-    /*
-     * Optional field.
-     *
-     * Set the proper voltage regulator to power the
-     * transceiver if needed.
-     */
-    xceiver-supply = <&ext_3v3>;
+//     /*
+//      * Optional field.
+//      *
+//      * Set the proper voltage regulator to power the
+//      * transceiver if needed.
+//      */
+//     xceiver-supply = <&ext_3v3>;
 
-    status = "okay";
-};
+//     status = "okay";
+// };
 
 &ecspi1 {
     fsl,spi-num-chipselects = <1>;
