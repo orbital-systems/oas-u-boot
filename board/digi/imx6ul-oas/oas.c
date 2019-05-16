@@ -700,6 +700,45 @@ int board_late_init(void)
 	/* SOM late init */
 	ccimx6ul_late_init();
 
+	/*
+	 * The mtdparts_oas string will determine the flash layout of the product.
+	 *
+	 * The CONFIG_UBOOT_PARTITION contains the U-Boot bootloader image that is
+	 * executed when the device is power on, it starts the Linux kernel and
+	 * allows some device configuration.
+	 *
+	 * The 'environment' partiation contains the U-Boot environmet and a
+	 * redundant copy.
+	 *
+	 * The 'safe' partition contain encryption key for encrypted partiations.
+	 *
+	 * The CONFIG_LINUX_PARTITION contains the Linux kernel, device tree
+	 * files and U-Boot boot scripts.
+	 *
+	 * The CONFIG_RECOVERY_PARTITION contains a recovery Linux ramdisk image
+	 * that chan be launched to perform firmware updates.
+	 *
+	 * The 'rootfs' partition contains the Linux root file system.
+	 *
+	 * The 'persistent' partition contains configuratio that should survive a
+	 * firmware update.
+	 */
+	const char *mtdparts_oas = "mtdparts=" CONFIG_NAND_NAME ":"
+	                           "3m(" CONFIG_UBOOT_PARTITION "),"
+								"1m(environment),"
+								"1m(safe),"
+								"12m(" CONFIG_LINUX_PARTITION "),"
+								"14m(" CONFIG_RECOVERY_PARTITION "),"
+								"116m(rootfs),"
+								"5m(persistent),"
+								"-(update)";
+	/*
+	 * This environment variable will be read by imx6ul common code to set the
+	 * default mtdparts boot arguments to the Linux kernel. which will establish
+	 * the NAND flash layout.
+	 */
+	setenv("mtdparts", mtdparts_oas);
+
 	/* Set default dynamic variables */
 	platform_default_environment();
 
